@@ -1,0 +1,8 @@
+find_replace:
+  - find_value: ${{ secrets.DEV_WORKSPACE_ID}}
+    replace_value:
+      dev: ${{ secrets.DEV_WORKSPACE_ID}}
+      test: ${{ secrets.TEST_WORKSPACE_ID}}
+    item_type : "Notebook"
+    file_path:
+      - "Notebooks/bronze_tables.Notebook/notebook-content.py"
