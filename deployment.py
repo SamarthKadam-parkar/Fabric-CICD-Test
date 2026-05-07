@@ -2,7 +2,7 @@ from fabric_cicd import FabricWorkspace, publish_all_items, unpublish_all_orphan
 
 fabricWorkspace = FabricWorkspace (
 
-    client_id = ${{secrets.CLIENT_ID}} ,
+    client_id = ${{ secrets.CLIENT_ID }} ,
     tenant_id = ,
     client_secret = ,
 )
