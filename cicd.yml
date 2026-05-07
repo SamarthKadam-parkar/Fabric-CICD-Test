@@ -1,0 +1,44 @@
+name: Fabric CI/CD
+on:
+ push:
+   branches:
+     - test
+     - main
+jobs:
+ deploy-test:
+   name: Deploy to Test
+   runs-on: ubuntu-latest
+   if: github.ref == 'refs/heads/test'
+   steps:
+     - uses: actions/checkout@v4
+     - uses: actions/setup-python@v5
+       with:
+         python-version: "3.11"
+     - run: pip install fabric-cicd azure-identity
+     - run: python deploy.py
+       env:
+         TENANT_ID:           ${{ secrets.TENANT_ID }}
+         CLIENT_ID:           ${{ secrets.CLIENT_ID }}
+         CLIENT_SECRET:       ${{ secrets.CLIENT_SECRET }}
+         TARGET_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
+         ENVIRONMENT:         TEST
+         REPO_PATH:           ${{ github.workspace }}/workspace
+ deploy-prod:
+   name: Deploy to Production
+   runs-on: ubuntu-latest
+   if: github.ref == 'refs/heads/main'
+   environment: fabric-prod
+   steps:
+     - uses: actions/checkout@v4
+     - uses: actions/setup-python@v5
+       with:
+         python-version: "3.11"
+     - run: pip install fabric-cicd azure-identity
+     - run: python deploy.py
+       env:
+         TENANT_ID:           ${{ secrets.TENANT_ID }}
+         CLIENT_ID:           ${{ secrets.CLIENT_ID }}
+         CLIENT_SECRET:       ${{ secrets.CLIENT_SECRET }}
+         TARGET_WORKSPACE_ID: ${{ secrets.PROD_WORKSPACE_ID }}
+         ENVIRONMENT:         PROD
+         REPO_PATH:           ${{ github.workspace }}/workspace
