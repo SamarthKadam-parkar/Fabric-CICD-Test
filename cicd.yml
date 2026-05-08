@@ -1,46 +1,28 @@
-name: Fabric CI/CD
+name: Fabric CICD
 on:
  push:
    branches:
-     - main
-     - prod
      - test
-     - dev
 jobs:
- deploy-test:
-   name: Deploy to Test
+ deploy:
    runs-on: ubuntu-latest
-   if: github.ref == 'refs/heads/test'
    steps:
-     - uses: actions/checkout@v4
-     - uses: actions/setup-python@v5
+     - name: Checkout Repository
+       uses: actions/checkout@v4
+     - name: Setup Python
+       uses: actions/setup-python@v5
        with:
-         python-version: "3.11"
-     - run: pip install fabric-cicd azure-identity
-     - run: python deploy.py
-       env:
-         TENANT_ID:           ${{ secrets.TENANT_ID }}
-         CLIENT_ID:           ${{ secrets.CLIENT_ID }}
-         CLIENT_SECRET:       ${{ secrets.CLIENT_SECRET }}
-         TARGET_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
-         ENVIRONMENT:         TEST
-         REPO_PATH:           ${{ github.workspace }}/workspace
- deploy-prod:
-   name: Deploy to Production
-   runs-on: ubuntu-latest
-   if: github.ref == 'refs/heads/main'
-   environment: fabric-prod
-   steps:
-     - uses: actions/checkout@v4
-     - uses: actions/setup-python@v5
+         python-version: '3.11'
+     - name: Install Dependencies
+       run: |
+         pip install --upgrade pip
+         pip install fabric-cicd msal python-dotenv
+     - name: Azure Login
+       uses: azure/login@v2
        with:
-         python-version: "3.11"
-     - run: pip install fabric-cicd azure-identity
-     - run: python deploy.py
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
+         allow-no-subscriptions: true
+     - name: Run Deployment
+       run: python deployment.py
        env:
-         TENANT_ID:           ${{ secrets.TENANT_ID }}
-         CLIENT_ID:           ${{ secrets.CLIENT_ID }}
-         CLIENT_SECRET:       ${{ secrets.CLIENT_SECRET }}
-         TARGET_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
-         ENVIRONMENT:         PROD
-         REPO_PATH:           ${{ github.workspace }}/workspace
+         TEST_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
