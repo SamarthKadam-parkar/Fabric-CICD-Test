@@ -1,8 +1,15 @@
 find_replace:
-  - find_value: ${{ secrets.DEV_WORKSPACE_ID}}
-    replace_value:
-      dev: ${{ secrets.DEV_WORKSPACE_ID}}
-      test: ${{ secrets.TEST_WORKSPACE_ID}}
-    item_type : "Notebook"
-    file_path:
-      - "Notebooks/bronze_tables.Notebook/notebook-content.py"
+ # Workspace ID replacement
+ - find_value: "DEV_WORKSPACE_ID"
+   replace_value:
+     test: "TEST_WORKSPACE_ID"
+   item_type: "Notebook"
+   file_path:
+     - "Notebooks/bronze_tables.Notebook/notebook-content.py"
+ # Lakehouse ID replacement
+ - find_value: "DEV_LAKEHOUSE_ID"
+   replace_value:
+     test: "TEST_LAKEHOUSE_ID"
+   item_type: "Notebook"
+   file_path:
+     - "Notebooks/bronze_tables.Notebook/notebook-content.py"
