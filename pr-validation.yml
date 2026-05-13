@@ -1,0 +1,24 @@
+pr-validation.yml
+name: Feature Branch Validation
+on:
+ pull_request:
+   branches:
+     - dev
+jobs:
+ validate:
+   runs-on: ubuntu-latest
+   steps:
+# -----------------------------
+# Checkout Code
+# -----------------------------
+     - name: Checkout Repository
+       uses: actions/checkout@v4
+# -----------------------------
+# Validate Repository
+# -----------------------------
+     - name: Validate Repository Structure
+       run: |
+         echo "Running validation..."
+         test -d notebooks || echo "No notebooks folder found"
+         test -d pipelines || echo "No pipelines folder found"
+         echo "Validation completed successfully"

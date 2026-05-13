@@ -1,0 +1,29 @@
+2026-05-13 13:35:51,491 - INFO - fabric_cicd._common._validate_input - Relative directory path '.' resolved as 'C:\Users\samarth.kadam\Fabric-CICD-Test'
+2026-05-13 13:35:51,570 - INFO - fabric_cicd.fabric_workspace - 
+2026-05-13 13:35:51,578 - INFO - fabric_cicd.fabric_workspace - [32m[1m####################################################################################################[0m
+2026-05-13 13:35:51,578 - INFO - fabric_cicd.fabric_workspace - [32m[1m########## Validating Parameter File ###############################################################[0m
+2026-05-13 13:35:51,578 - INFO - fabric_cicd.fabric_workspace - [32m[1m####################################################################################################[0m
+2026-05-13 13:35:51,578 - INFO - fabric_cicd.fabric_workspace - 
+2026-05-13 13:35:51,588 - INFO - fabric_cicd._parameter._parameter - Parameter file validation passed
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - 
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - [32m[1m####################################################################################################[0m
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - [32m[1m########## Publishing Workspace Folders ############################################################[0m
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - [32m[1m####################################################################################################[0m
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - 
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - Publishing Workspace Folders
+2026-05-13 13:35:54,939 - INFO - fabric_cicd.fabric_workspace - ->Published
+2026-05-13 13:36:00,871 - INFO - fabric_cicd.publish - 
+2026-05-13 13:36:00,871 - INFO - fabric_cicd.publish - [32m[1m####################################################################################################[0m
+2026-05-13 13:36:00,871 - INFO - fabric_cicd.publish - [32m[1m########## Publishing Item 4/26: Lakehouse #########################################################[0m
+2026-05-13 13:36:00,871 - INFO - fabric_cicd.publish - [32m[1m####################################################################################################[0m
+2026-05-13 13:36:00,871 - INFO - fabric_cicd.publish - 
+2026-05-13 13:36:00,944 - INFO - fabric_cicd.fabric_workspace - Publishing Lakehouse 'raw'
+2026-05-13 13:36:05,004 - INFO - fabric_cicd._items._lakehouse - ->SQL Endpoint provisioned successfully
+2026-05-13 13:36:05,004 - INFO - fabric_cicd._items._lakehouse - ->Published Lakehouse 'raw'
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.publish - 
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.publish - [32m[1m####################################################################################################[0m
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.publish - [32m[1m########## Publishing Item 10/26: Notebook #########################################################[0m
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.publish - [32m[1m####################################################################################################[0m
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.publish - 
+2026-05-13 13:36:05,011 - INFO - fabric_cicd.fabric_workspace - Publishing Notebook 'bronze_tables'
+2026-05-13 13:36:11,790 - INFO - fabric_cicd.fabric_workspace - ->Published Notebook 'bronze_tables'
