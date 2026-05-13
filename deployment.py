@@ -2,31 +2,34 @@ import os
 from dotenv import load_dotenv
 from azure.identity import ClientSecretCredential
 from fabric_cicd import FabricWorkspace, publish_all_items
-# Load environment variables
-load_dotenv()
-# Workspace config
-TEST_WORKSPACE_ID = os.getenv("DEV_WORKSPACE_ID")
-token_credential = ClientSecretCredential(
-    client_id=os.getenv("CLIENT_ID"), 
-    client_secret=os.getenv("CLIENT_SECRET"), 
-    tenant_id=os.getenv("TENANT_ID")
+
+# --- configuration ---
+
+# enter the dev workspace id if you are in dev brach or main workspace id if its in main branch
+WORKSPACE_ID = ""
+
+# specify environment
+ENVIRONMENT = "dev"  # or "main"
+
+# change the fabric artifacts path as per need, currently set to root folder
+REPO_DIR = "."
+
+# add or remove artifacts as per your need, if removed the CICD will not be implemnted for that specific artifact
+ITEM_TYPES = [
+    "Lakehouse", "Notebook", "Environment",
+    "Warehouse", "DataPipeline", "SemanticModel", "Report"
+]
+# ----------------------
+
+def main():
+    ws = FabricWorkspace(
+        workspace_id=WORKSPACE_ID,
+        environment=ENVIRONMENT,
+        repository_directory=REPO_DIR,
+        item_type_in_scope=ITEM_TYPES
     )
-# Create workspace object
-ws = FabricWorkspace(
-   workspace_id=TEST_WORKSPACE_ID,
-   token_credential=token_credential,
-   environment="test",
-   repository_directory=".",
-   item_type_in_scope=[
-       "Lakehouse",
-       "Notebook",
-       "DataPipeline",
-       "Environment",
-       "SemanticModel",
-       "Report"
-   ],
-   parameter_file="pr-validation.yml"
-)
-print("Starting deployment to DEV workspace...")
-publish_all_items(ws)
-print("Deployment completed successfully")
+
+    publish_all_items(ws)
+
+if __name__ == "__main__":
+    main()

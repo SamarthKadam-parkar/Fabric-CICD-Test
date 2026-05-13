@@ -25,4 +25,9 @@ jobs:
      - name: Run Deployment
        run: python deployment.py
        env:
-         TEST_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
+         TENANT_ID:           ${{ secrets.TENANT_ID }}
+         CLIENT_ID:           ${{ secrets.CLIENT_ID }}
+         CLIENT_SECRET:       ${{ secrets.CLIENT_SECRET }}
+         TARGET_WORKSPACE_ID: ${{ secrets.TEST_WORKSPACE_ID }}
+         ENVIRONMENT:         PROD
+         REPO_PATH:           ${{ github.workspace }}/workspace
